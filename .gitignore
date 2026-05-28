@@ -1,0 +1,29 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local environment
+.env
+.envrc
+
+# C++ examples build dir
+examples/cpp_client/build/
+examples/cpp_client/generated/
+
+# Logs
+*.log
+
+# Python (if any tooling sneaks in)
+__pycache__/
+*.pyc

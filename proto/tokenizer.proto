@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package tokenizer.v1;
+
+service Tokenizer {
+  rpc Tokenize(TokenizeRequest) returns (TokenizeResponse);
+  rpc Detokenize(DetokenizeRequest) returns (DetokenizeResponse);
+  rpc DetokenizeStream(DetokenizeStreamRequest) returns (stream DetokenizeChunk);
+  rpc GetModelInfo(GetModelInfoRequest) returns (GetModelInfoResponse);
+}
+
+message ChatMessage {
+  string role = 1;
+  string content = 2;
+  // optional / advanced template fields:
+  string name = 3;                     // speaker name (Kimi uses for role_name)
+  string tool_call_id = 4;             // for role=tool responses
+  string reasoning_content = 5;        // GLM reasoning block
+  // JSON array of tool calls. Schema:
+  //   [{ "id": "...", "type": "function",
+  //      "function": { "name": "...", "arguments": "<JSON-string>" }}]
+  string tool_calls_json = 6;
+  // JSON array of content parts (for multimodal). If non-empty overrides `content`.
+  //   [{ "type": "text", "text": "..." }, { "type": "image", "image_url": "..." }]
+  string content_parts_json = 7;
+  // Optional generic prefix flag (DeepSeek V3.1 uses for prefilled assistant turns)
+  bool prefix = 8;
+}
+
+message TokenizeRequest {
+  string model = 1;
+  repeated ChatMessage messages = 2;
+  bool add_generation_prompt = 3;
+  string raw_text = 4;
+  // JSON array of tool schemas; passed as `tools` to the template.
+  string tools_json = 5;
+  // JSON object of extra template variables, e.g. `{"thinking": true}`
+  string template_kwargs_json = 6;
+}
+
+message TokenizeResponse {
+  string prompt = 1;
+  repeated uint32 token_ids = 2;
+  uint32 num_tokens = 3;
+  string model = 4;
+}
+
+message DetokenizeRequest {
+  string model = 1;
+  repeated uint32 token_ids = 2;
+  bool skip_special_tokens = 3;
+}
+
+message DetokenizeResponse {
+  string text = 1;
+}
+
+message DetokenizeStreamRequest {
+  string model = 1;
+  repeated uint32 token_ids = 2;
+  bool skip_special_tokens = 3;
+}
+
+message DetokenizeChunk {
+  string delta = 1;
+  uint32 token_index = 2;
+}
+
+message GetModelInfoRequest {
+  string model = 1;
+}
+
+message GetModelInfoResponse {
+  string model = 1;
+  uint32 vocab_size = 2;
+  string bos_token = 3;
+  string eos_token = 4;
+  bool has_chat_template = 5;
+}

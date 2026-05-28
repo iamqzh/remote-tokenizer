@@ -1,0 +1,24 @@
+[package]
+name = "archive-model"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "archive-model"
+path = "src/main.rs"
+
+[dependencies]
+tokenizer-manifest = { path = "../../crates/tokenizer-manifest" }
+tokenizer-core = { path = "../../crates/tokenizer-core" }
+anyhow = { workspace = true }
+clap = { version = "4", features = ["derive"] }
+hf-hub = { workspace = true }
+tokio = { workspace = true }
+sha2 = "0.10"
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = "0.8"
+chrono = { version = "0.4", features = ["serde"] }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }

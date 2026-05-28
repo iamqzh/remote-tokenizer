@@ -1,0 +1,39 @@
+schema_version = 1
+name = "glm-4.7"
+display_name = "GLM 4.7"
+hf_repo = "zai-org/GLM-4.7"
+backend = "huggingface"
+archived_at = "2026-05-27T14:23:45.442557271+00:00"
+archive_tool_version = "0.1.0"
+
+[[files]]
+name = "chat_template.jinja"
+sha256 = "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375"
+size = 3120
+
+[[files]]
+name = "tokenizer.json"
+sha256 = "9340665016419c825c4bdabbcc9acc43b7ca2c68ce142724afa829abb1be5efd"
+size = 19970699
+
+[[files]]
+name = "tokenizer_config.json"
+sha256 = "27d01309c0ae7b5edb6511daabfcbf772b60e21c65cbb74d059acc76796f7897"
+size = 7307
+
+[vocab]
+size = 151329
+eos_token = "<|endoftext|>"
+has_chat_template = true
+
+[verify]
+text = "Hello, world! 你好。"
+expected_token_ids = [
+    9703,
+    11,
+    1879,
+    0,
+    101726,
+    98384,
+    1773,
+]

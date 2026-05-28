@@ -1,0 +1,33 @@
+schema_version = 1
+name = "deepseek-v3.1"
+display_name = "DeepSeek V3.1"
+hf_repo = "deepseek-ai/DeepSeek-V3.1"
+backend = "huggingface"
+archived_at = "2026-05-27T14:23:35.699799450+00:00"
+archive_tool_version = "0.1.0"
+
+[[files]]
+name = "tokenizer.json"
+sha256 = "32b34a41212e92f62e859cbbea121ae705a1fabbf157d9acf22d134ecd8dcf70"
+size = 7847578
+
+[[files]]
+name = "tokenizer_config.json"
+sha256 = "f3d66f405ce0315c754a3cc041f13be863fefcd62c240068098efdbd1924f8b5"
+size = 3744
+
+[vocab]
+size = 128000
+has_chat_template = true
+
+[verify]
+text = "Hello, world! 你好。"
+expected_token_ids = [
+    19923,
+    14,
+    2058,
+    3,
+    223,
+    30594,
+    320,
+]

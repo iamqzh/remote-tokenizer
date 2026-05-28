@@ -1,0 +1,20 @@
+[package]
+name = "tokenizer-bench"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "bench"
+path = "src/main.rs"
+
+[dependencies]
+tokenizer-proto = { path = "../../crates/tokenizer-proto" }
+tonic = { workspace = true }
+tonic-prost = { workspace = true }
+prost = { workspace = true }
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+futures = "0.3"
+clap = { version = "4", features = ["derive"] }
+anyhow = { workspace = true }
+hdrhistogram = "7"

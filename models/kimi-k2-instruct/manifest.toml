@@ -1,0 +1,40 @@
+schema_version = 1
+name = "kimi-k2-instruct"
+display_name = "Kimi K2 Instruct"
+hf_repo = "moonshotai/Kimi-K2-Instruct"
+backend = "kimi-tiktoken"
+archived_at = "2026-05-27T14:23:27.635504357+00:00"
+archive_tool_version = "0.1.0"
+
+[[files]]
+name = "chat_template.jinja"
+sha256 = "39e8c195b474c1a4148046f41fedd177b2ff8f420fa376e52fcdddb829e8f0c5"
+size = 2021
+
+[[files]]
+name = "tiktoken.model"
+sha256 = "b6c497a7469b33ced9c38afb1ad6e47f03f5e5dc05f15930799210ec050c5103"
+size = 2795286
+
+[[files]]
+name = "tokenizer_config.json"
+sha256 = "5ba77d5822137ac3cb9337d2b84561d10425562cf8b8f2c74c91a832516a778d"
+size = 3695
+
+[vocab]
+size = 163840
+bos_token = "[BOS]"
+eos_token = "[EOS]"
+has_chat_template = true
+
+[verify]
+text = "Hello, world! 你好。"
+expected_token_ids = [
+    19180,
+    11,
+    2695,
+    0,
+    220,
+    33845,
+    292,
+]
